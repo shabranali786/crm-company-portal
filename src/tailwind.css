@@ -96,23 +96,29 @@
   --animate-border-beam: border-beam 6s linear infinite;
 }
 .dark {
-  /* dark */
-  --color-heading: white;
-  --color-body: #0d121e;
-  /* --color-body: #0f172a; */
-  --color-sidebar-bg: #181a25;
+  /* Professional Dark Theme */
+  --color-heading: #f8fafc;
+  --color-body: #0f172a;
+  --color-sidebar-bg: #1e293b;
+  
+  /* Dark UI Colors */
+  --color-dark-card: #1e293b;
+  --color-dark-hover: #334155;
+  --color-dark-border: #334155;
+  --color-dark-text: #cbd5e1;
+  --color-dark-text-muted: #94a3b8;
+  --color-dark-surface: #0f172a;
 
-  /* dark table */
-  --table-header-text-color: var(--color-slate-200);
-  --table-header-bg-color: var(--color-slate-800);
-  --table-cell-text-color: var(--color-slate-200);
-  /* --table-cell-bg-color: #0f172a; */
-  --table-row-bg-color: var(--color-slate-900);
-  --table-row-hover-color: var(--color-slate-800);
-  --table-bg-color: --alpha(var(--color-white) / 10%);
-  --table-pagination-bg-color: var(--color-slate-800);
-  --table-pagination-text-color: var(--color-slate-400);
-  --table-border-color: var(--color-slate-700);
+  /* Dark Tables */
+  --table-header-text-color: #e2e8f0;
+  --table-header-bg-color: #1e293b;
+  --table-cell-text-color: #cbd5e1;
+  --table-row-bg-color: #0f172a;
+  --table-row-hover-color: #1e293b;
+  --table-bg-color: #0f172a;
+  --table-pagination-bg-color: #1e293b;
+  --table-pagination-text-color: #94a3b8;
+  --table-border-color: #334155;
 
   /* date range (dark) */
   --daterange-font-size: 12px;
@@ -207,7 +213,7 @@
     @apply text-[#555555]  font-normal leading-relaxed text-sm;
   }
   p {
-    margin-bottom: 0.25rem;
+    /* margin-bottom: 0.25rem; */
   }
   button {
     @apply cursor-pointer bg-inherit;
