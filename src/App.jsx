@@ -8,10 +8,12 @@ import {
 } from "react-router-dom";
 import Master from "./components/layout/Master";
 import { Dashboard } from "./pages/Allpages";
+import LoginForm from "./components/auth/LoginForm";
 import { Provider } from 'react-redux';
 import { store } from './store/store';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { initializeTheme } from './store/slices/themeSlice';
+import { initializeAuth } from './store/slices/authSlice';
 
 // Loading component
 const PageLoader = () => (
@@ -20,26 +22,35 @@ const PageLoader = () => (
   </div>
 );
 
-// App wrapper component to initialize theme
+// App wrapper component to initialize theme and auth
 const AppContent = () => {
   const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.auth);
   
   useEffect(() => {
     dispatch(initializeTheme());
+    dispatch(initializeAuth());
   }, [dispatch]);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route
-        path="/"
-        element={
-          <Suspense fallback={<PageLoader />}>
-            <Master />
-          </Suspense>
-        }
-      >
-        <Route index element={<Dashboard />} />
-      </Route>
+      <>
+        <Route path="/login" element={<LoginForm />} />
+        <Route
+          path="/"
+          element={
+            isAuthenticated ? (
+              <Suspense fallback={<PageLoader />}>
+                <Master />
+              </Suspense>
+            ) : (
+              <LoginForm />
+            )
+          }
+        >
+          <Route index element={<Dashboard />} />
+        </Route>
+      </>
     )
   );
 
