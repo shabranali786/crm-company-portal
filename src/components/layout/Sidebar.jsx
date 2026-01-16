@@ -12,68 +12,163 @@ import {
   FiBarChart,
 } from "react-icons/fi";
 import { BsFillBuildingFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 
 const Sidebar = ({ isCollapsed, onToggle }) => {
   const location = useLocation();
+  const { user, userRole } = useSelector((state) => state.auth);
 
-  const menuItems = [
-    {
-      title: "Dashboard",
-      icon: FiHome,
-      path: "/",
-      badge: null,
-    },
-    {
-      title: "Lead Management",
-      icon: FiUsers,
-      path: "/leads",
-      badge: null,
-      subItems: [
-        { title: "All Leads", path: "/leads" },
-        { title: "Add Lead", path: "/leads/add" },
-        { title: "Lead Reports", path: "/leads/reports" },
-      ],
-    },
-    {
-      title: "Company Management",
-      icon: BsFillBuildingFill,
-      path: "/companies",
-      badge: null,
-      subItems: [
-        { title: "All Companies", path: "/companies" },
-        { title: "Add Company", path: "/companies/add" },
-        { title: "Company Settings", path: "/companies/settings" },
-      ],
-    },
-    {
-      title: "User Management",
-      icon: FiUserCheck,
-      path: "/users",
-      badge: null,
-      subItems: [
-        { title: "All Users", path: "/users" },
-        { title: "Add User", path: "/users/add" },
-        { title: "Roles & Permissions", path: "/users/roles" },
-      ],
-    },
-    {
-      title: "Analytics",
-      icon: FiBarChart,
-      path: "/analytics",
-      badge: "New",
-    },
-    {
-      title: "Settings",
-      icon: FiSettings,
-      path: "/settings",
-      badge: null,
-      subItems: [
-        { title: "General Settings", path: "/settings/general" },
-        { title: "Security", path: "/settings/security" },
-        { title: "Integrations", path: "/settings/integrations" },
-      ],
-    },
-  ];
+  // Role-based menu configuration
+  const getAllMenuItems = () => {
+    const baseMenuItems = [
+      {
+        title: "Dashboard",
+        icon: FiHome,
+        path: "/",
+        badge: null,
+        roles: ["top_super_admin", "company_admin", "company_user"],
+      }
+    ];
+
+    // Top Super Admin - Full platform access
+    if (userRole === "top_super_admin") {
+      return [
+        ...baseMenuItems,
+        {
+          title: "Company Management",
+          icon: BsFillBuildingFill,
+          path: "/companies",
+          badge: null,
+          roles: ["top_super_admin"],
+          subItems: [
+            { title: "All Companies", path: "/companies" },
+            { title: "Add Company", path: "/companies/add" },
+            { title: "Company Settings", path: "/companies/settings" },
+          ],
+        },
+        {
+          title: "Platform Users",
+          icon: FiUserCheck,
+          path: "/platform-users",
+          badge: null,
+          roles: ["top_super_admin"],
+          subItems: [
+            { title: "All Platform Users", path: "/platform-users" },
+            { title: "Company Admins", path: "/platform-users/admins" },
+            { title: "System Settings", path: "/platform-users/system" },
+          ],
+        },
+        {
+          title: "Platform Analytics",
+          icon: FiBarChart,
+          path: "/platform-analytics",
+          badge: "New",
+          roles: ["top_super_admin"],
+        },
+        {
+          title: "Platform Settings",
+          icon: FiSettings,
+          path: "/platform-settings",
+          badge: null,
+          roles: ["top_super_admin"],
+          subItems: [
+            { title: "General Settings", path: "/platform-settings/general" },
+            { title: "Billing & Plans", path: "/platform-settings/billing" },
+            { title: "API Management", path: "/platform-settings/api" },
+            { title: "Security", path: "/platform-settings/security" },
+          ],
+        },
+      ];
+    }
+
+    // Company Admin - Company management access
+    if (userRole === "company_admin") {
+      return [
+        ...baseMenuItems,
+        {
+          title: "Lead Management",
+          icon: FiUsers,
+          path: "/leads",
+          badge: null,
+          roles: ["company_admin"],
+          subItems: [
+            { title: "All Leads", path: "/leads" },
+            { title: "Add Lead", path: "/leads/add" },
+            { title: "Lead Reports", path: "/leads/reports" },
+            { title: "Lead Sources", path: "/leads/sources" },
+          ],
+        },
+        {
+          title: "Team Management",
+          icon: FiUserCheck,
+          path: "/team",
+          badge: null,
+          roles: ["company_admin"],
+          subItems: [
+            { title: "All Team Members", path: "/team" },
+            { title: "Add Team Member", path: "/team/add" },
+            { title: "Roles & Permissions", path: "/team/roles" },
+            { title: "Performance", path: "/team/performance" },
+          ],
+        },
+        {
+          title: "Company Analytics",
+          icon: FiBarChart,
+          path: "/analytics",
+          badge: "New",
+          roles: ["company_admin"],
+        },
+        {
+          title: "Company Settings",
+          icon: FiSettings,
+          path: "/settings",
+          badge: null,
+          roles: ["company_admin"],
+          subItems: [
+            { title: "Company Profile", path: "/settings/profile" },
+            { title: "Integrations", path: "/settings/integrations" },
+            { title: "Notifications", path: "/settings/notifications" },
+            { title: "Security", path: "/settings/security" },
+          ],
+        },
+      ];
+    }
+
+    // Company User - Limited access
+    if (userRole === "company_user") {
+      return [
+        ...baseMenuItems,
+        {
+          title: "My Leads",
+          icon: FiUsers,
+          path: "/my-leads",
+          badge: null,
+          roles: ["company_user"],
+          subItems: [
+            { title: "Assigned Leads", path: "/my-leads" },
+            { title: "Add Lead", path: "/my-leads/add" },
+            { title: "My Performance", path: "/my-leads/performance" },
+          ],
+        },
+        {
+          title: "My Profile",
+          icon: FiSettings,
+          path: "/profile",
+          badge: null,
+          roles: ["company_user"],
+          subItems: [
+            { title: "Personal Settings", path: "/profile/settings" },
+            { title: "Change Password", path: "/profile/password" },
+            { title: "Notifications", path: "/profile/notifications" },
+          ],
+        },
+      ];
+    }
+
+    return baseMenuItems;
+  };
+
+  const menuItems = getAllMenuItems();
 
   const [expandedItems, setExpandedItems] = React.useState({});
 
@@ -265,14 +360,32 @@ const Sidebar = ({ isCollapsed, onToggle }) => {
         {!isCollapsed && (
           <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-100/60 dark:border-slate-700/60 bg-gradient-to-t from-gray-50/90 via-white/50 to-transparent dark:from-slate-900/90 dark:via-slate-800/50 backdrop-blur-sm z-10">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-all duration-300 border-2 border-white">
-                <span className="text-white font-bold text-sm drop-shadow-sm">SA</span>
+              <div className={`w-10 h-10 bg-gradient-to-r rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-all duration-300 border-2 border-white ${
+                userRole === 'top_super_admin' 
+                  ? 'from-purple-500 via-pink-500 to-rose-500'
+                  : userRole === 'company_admin'
+                  ? 'from-blue-500 via-indigo-500 to-purple-500'
+                  : 'from-green-500 via-emerald-500 to-teal-500'
+              }`}>
+                <span className="text-white font-bold text-sm drop-shadow-sm">
+                  {userRole === 'top_super_admin' 
+                    ? 'SA' 
+                    : userRole === 'company_admin'
+                    ? 'CA'
+                    : user?.name?.charAt(0) || 'U'}
+                </span>
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-gray-200 dark:to-gray-300 bg-clip-text text-transparent truncate">
-                  Super Admin
+                  {user?.name || 'User'}
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 truncate font-medium">Platform Owner</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 truncate font-medium">
+                  {userRole === 'top_super_admin' 
+                    ? 'Platform Owner'
+                    : userRole === 'company_admin'
+                    ? 'Company Admin'
+                    : 'Team Member'}
+                </p>
               </div>
             </div>
           </div>

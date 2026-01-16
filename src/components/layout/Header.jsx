@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Menu, Transition } from '@headlessui/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from '../../store/slices/themeSlice';
+import { logout } from '../../store/slices/authSlice';
 import {
   FiBell,
   FiSearch,
@@ -21,9 +22,14 @@ const Header = ({ onToggleSidebar }) => {
   const location = useLocation();
   const dispatch = useDispatch();
   const isDark = useSelector((state) => state.theme.isDark);
+  const { user, userRole } = useSelector((state) => state.auth);
 
   const handleToggleTheme = () => {
     dispatch(toggleTheme());
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
   };
 
   // Generate breadcrumbs from current path
@@ -238,12 +244,30 @@ const Header = ({ onToggleSidebar }) => {
           {/* Profile Dropdown */}
           <Menu as="div" className="relative">
             <Menu.Button className="flex items-center space-x-3 p-2 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 dark:hover:from-blue-900/20 dark:hover:to-indigo-900/20 rounded-xl transition-all duration-300 hover:shadow-md">
-              <div className="w-8 h-8 bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white">
-                <span className="text-white font-bold text-sm">SA</span>
+              <div className={`w-8 h-8 bg-gradient-to-r rounded-full flex items-center justify-center shadow-lg border-2 border-white ${
+                userRole === 'top_super_admin' 
+                  ? 'from-purple-500 via-pink-500 to-rose-500'
+                  : userRole === 'company_admin'
+                  ? 'from-blue-500 via-indigo-500 to-purple-500'
+                  : 'from-green-500 via-emerald-500 to-teal-500'
+              }`}>
+                <span className="text-white font-bold text-sm">
+                  {userRole === 'top_super_admin' 
+                    ? 'SA' 
+                    : userRole === 'company_admin'
+                    ? 'CA'
+                    : user?.name?.charAt(0) || 'U'}
+                </span>
               </div>
               <div className="hidden md:block text-left">
-                <p className="text-sm font-semibold text-gray-800 dark:text-gray-200 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors duration-300">Super Admin</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Platform Owner</p>
+                <p className="text-sm font-semibold text-gray-800 dark:text-gray-200 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors duration-300">{user?.name || 'User'}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                  {userRole === 'top_super_admin' 
+                    ? 'Platform Owner'
+                    : userRole === 'company_admin'
+                    ? 'Company Admin'
+                    : 'Team Member'}
+                </p>
               </div>
               <FiChevronDown className="w-4 h-4 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-all duration-300 ui-open:rotate-180" />
             </Menu.Button>
@@ -259,21 +283,55 @@ const Header = ({ onToggleSidebar }) => {
             >
               <Menu.Items className="absolute right-0 top-full mt-2 w-80 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-gray-200/60 dark:border-slate-600/60 overflow-hidden z-50 focus:outline-none backdrop-blur-sm">
                 {/* Profile Header */}
-                <div className="px-6 py-5 bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50 dark:from-purple-900/30 dark:via-pink-900/20 dark:to-rose-900/30 border-b border-gray-100/60 dark:border-slate-600/60">
+                <div className={`px-6 py-5 bg-gradient-to-br border-b border-gray-100/60 dark:border-slate-600/60 ${
+                  userRole === 'top_super_admin' 
+                    ? 'from-purple-50 via-pink-50 to-rose-50 dark:from-purple-900/30 dark:via-pink-900/20 dark:to-rose-900/30'
+                    : userRole === 'company_admin'
+                    ? 'from-blue-50 via-indigo-50 to-purple-50 dark:from-blue-900/30 dark:via-indigo-900/20 dark:to-purple-900/30'
+                    : 'from-green-50 via-emerald-50 to-teal-50 dark:from-green-900/30 dark:via-emerald-900/20 dark:to-teal-900/30'
+                }`}>
                   <div className="flex items-center space-x-4">
                     <div className="relative">
-                      <div className="w-16 h-16 bg-gradient-to-br from-purple-500 via-pink-500 to-rose-500 rounded-2xl flex items-center justify-center shadow-xl border-2 border-white">
-                        <span className="text-white font-bold text-lg drop-shadow-sm">SA</span>
+                      <div className={`w-16 h-16 bg-gradient-to-br rounded-2xl flex items-center justify-center shadow-xl border-2 border-white ${
+                        userRole === 'top_super_admin' 
+                          ? 'from-purple-500 via-pink-500 to-rose-500'
+                          : userRole === 'company_admin'
+                          ? 'from-blue-500 via-indigo-500 to-purple-500'
+                          : 'from-green-500 via-emerald-500 to-teal-500'
+                      }`}>
+                        <span className="text-white font-bold text-lg drop-shadow-sm">
+                          {userRole === 'top_super_admin' 
+                            ? 'SA' 
+                            : userRole === 'company_admin'
+                            ? 'CA'
+                            : user?.name?.charAt(0) || 'U'}
+                        </span>
                       </div>
                       <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-500 border-2 border-white rounded-full"></div>
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-bold text-gray-900 dark:text-gray-100 text-lg">Super Admin</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">admin@crmplatform.com</p>
+                      <h3 className="font-bold text-gray-900 dark:text-gray-100 text-lg">{user?.name || 'User'}</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{user?.email || 'user@example.com'}</p>
                       <div className="flex items-center space-x-2">
-                        <span className="inline-flex items-center px-2.5 py-1 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 text-blue-700 dark:text-blue-300 text-xs rounded-full font-semibold border border-blue-200 dark:border-blue-700">
-                          <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
-                          Platform Owner
+                        <span className={`inline-flex items-center px-2.5 py-1 bg-gradient-to-r text-xs rounded-full font-semibold border ${
+                          userRole === 'top_super_admin' 
+                            ? 'from-purple-100 to-pink-100 dark:from-purple-900/40 dark:to-pink-900/40 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-700'
+                            : userRole === 'company_admin'
+                            ? 'from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-700'
+                            : 'from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 text-green-700 dark:text-green-300 border-green-200 dark:border-green-700'
+                        }`}>
+                          <span className={`w-1.5 h-1.5 rounded-full mr-2 ${
+                            userRole === 'top_super_admin' 
+                              ? 'bg-purple-500'
+                              : userRole === 'company_admin'
+                              ? 'bg-blue-500'
+                              : 'bg-green-500'
+                          }`}></span>
+                          {userRole === 'top_super_admin' 
+                            ? 'Platform Owner'
+                            : userRole === 'company_admin'
+                            ? 'Company Admin'
+                            : 'Team Member'}
                         </span>
                       </div>
                     </div>
@@ -367,9 +425,11 @@ const Header = ({ onToggleSidebar }) => {
                 <div className="p-2">
                   <Menu.Item>
                     {({ active }) => (
-                      <button className={`w-full flex items-center space-x-3 px-6 py-3 text-left transition-all duration-200 ${
-                        active ? 'bg-gradient-to-r from-red-50 to-pink-50/50 dark:from-red-900/20 dark:to-pink-900/20 border-r-2 border-red-500' : ''
-                      }`}>
+                      <button 
+                        onClick={handleLogout}
+                        className={`w-full flex items-center space-x-3 px-6 py-3 text-left transition-all duration-200 ${
+                          active ? 'bg-gradient-to-r from-red-50 to-pink-50/50 dark:from-red-900/20 dark:to-pink-900/20 border-r-2 border-red-500' : ''
+                        }`}>
                         <div className={`p-2 rounded-xl transition-colors duration-200 ${
                           active ? 'bg-red-500 text-white' : 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400'
                         }`}>

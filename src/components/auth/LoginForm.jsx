@@ -16,8 +16,8 @@ const LoginForm = () => {
   const [loginType, setLoginType] = useState("top_super_admin");
 
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: "super@crmplatform.com",
+    password: "admin123",
     companyDomain: "",
   });
 
