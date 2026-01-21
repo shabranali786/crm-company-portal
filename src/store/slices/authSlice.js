@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: null,
@@ -6,14 +6,19 @@ const initialState = {
   isAuthenticated: false,
   loading: false,
   error: null,
+<<<<<<< Updated upstream
   userRole: null,      // crm_owner, company_owner, company_user
   roles: [],           // ['superadmin'], ['sales'], etc.
+=======
+  userRole: null,
+  roles: [],
+>>>>>>> Stashed changes
   companyId: null,
   permissions: [],
 };
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     loginStart: (state) => {
@@ -31,8 +36,13 @@ const authSlice = createSlice({
       state.permissions = action.payload.user.permissions || [];
       state.error = null;
 
+<<<<<<< Updated upstream
       localStorage.setItem('token', action.payload.token);
       localStorage.setItem('user', JSON.stringify(action.payload.user));
+=======
+      localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("user", JSON.stringify(action.payload.user));
+>>>>>>> Stashed changes
     },
     loginFailure: (state, action) => {
       state.loading = false;
@@ -55,12 +65,21 @@ const authSlice = createSlice({
       state.permissions = [];
       state.error = null;
 
+<<<<<<< Updated upstream
       localStorage.removeItem('token');
       localStorage.removeItem('user');
     },
     initializeAuth: (state) => {
       const token = localStorage.getItem('token');
       const user = localStorage.getItem('user');
+=======
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+    },
+    initializeAuth: (state) => {
+      const token = localStorage.getItem("token");
+      const user = localStorage.getItem("user");
+>>>>>>> Stashed changes
 
       if (token && user) {
         try {
@@ -73,8 +92,8 @@ const authSlice = createSlice({
           state.companyId = parsedUser.companyId;
           state.permissions = parsedUser.permissions || [];
         } catch (error) {
-          localStorage.removeItem('token');
-          localStorage.removeItem('user');
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
         }
       }
     },

@@ -53,7 +53,6 @@
     --color-green-300: oklch(87.1% 0.15 154.449);
     --color-green-400: oklch(79.2% 0.209 151.711);
     --color-green-500: oklch(72.3% 0.219 149.579);
-    --color-green-600: oklch(62.7% 0.194 149.214);
     --color-green-700: oklch(52.7% 0.154 150.069);
     --color-green-800: oklch(44.8% 0.119 151.328);
     --color-green-900: oklch(39.3% 0.095 152.535);
@@ -111,7 +110,6 @@
     --color-purple-100: oklch(94.6% 0.033 307.174);
     --color-purple-200: oklch(90.2% 0.063 306.703);
     --color-purple-300: oklch(82.7% 0.119 306.383);
-    --color-purple-400: oklch(71.4% 0.203 305.504);
     --color-purple-500: oklch(62.7% 0.265 303.9);
     --color-purple-600: oklch(55.8% 0.288 302.321);
     --color-purple-700: oklch(49.6% 0.265 301.924);
@@ -529,12 +527,15 @@
   .right-4 {
     right: calc(var(--spacing) * 4);
   }
+<<<<<<< Updated upstream
   .right-6 {
     right: calc(var(--spacing) * 6);
   }
   .right-full {
     right: 100%;
   }
+=======
+>>>>>>> Stashed changes
   .bottom-0 {
     bottom: calc(var(--spacing) * 0);
   }
@@ -565,6 +566,7 @@
   .left-full {
     left: 100%;
   }
+<<<<<<< Updated upstream
   .z-0 {
     z-index: 0;
   }
@@ -577,6 +579,8 @@
   .z-30 {
     z-index: 30;
   }
+=======
+>>>>>>> Stashed changes
   .z-40 {
     z-index: 40;
   }
@@ -640,6 +644,7 @@
   .mx-6 {
     margin-inline: calc(var(--spacing) * 6);
   }
+<<<<<<< Updated upstream
   .mx-8 {
     margin-inline: calc(var(--spacing) * 8);
   }
@@ -673,6 +678,11 @@
   .mt-1 {
     margin-top: calc(var(--spacing) * 1);
   }
+=======
+  .my-2 {
+    margin-block: calc(var(--spacing) * 2);
+  }
+>>>>>>> Stashed changes
   .mt-1\.5 {
     margin-top: calc(var(--spacing) * 1.5);
   }
@@ -742,6 +752,7 @@
   .mb-4 {
     margin-bottom: calc(var(--spacing) * 4);
   }
+<<<<<<< Updated upstream
   .mb-5 {
     margin-bottom: calc(var(--spacing) * 5);
   }
@@ -763,6 +774,11 @@
   .ml-2 {
     margin-left: calc(var(--spacing) * 2);
   }
+=======
+  .mb-8 {
+    margin-bottom: calc(var(--spacing) * 8);
+  }
+>>>>>>> Stashed changes
   .ml-3 {
     margin-left: calc(var(--spacing) * 3);
   }
@@ -972,6 +988,7 @@
   .max-h-0 {
     max-height: calc(var(--spacing) * 0);
   }
+<<<<<<< Updated upstream
   .max-h-32 {
     max-height: calc(var(--spacing) * 32);
   }
@@ -990,6 +1007,8 @@
   .max-h-80 {
     max-height: calc(var(--spacing) * 80);
   }
+=======
+>>>>>>> Stashed changes
   .max-h-96 {
     max-height: calc(var(--spacing) * 96);
   }
@@ -1359,6 +1378,7 @@
     --tw-translate-y: calc(calc(1/2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
+<<<<<<< Updated upstream
   .-translate-y-2 {
     --tw-translate-y: calc(var(--spacing) * -2);
     translate: var(--tw-translate-x) var(--tw-translate-y);
@@ -1371,6 +1391,8 @@
     --tw-translate-y: calc(var(--spacing) * -4);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
+=======
+>>>>>>> Stashed changes
   .translate-y-0 {
     --tw-translate-y: calc(var(--spacing) * 0);
     translate: var(--tw-translate-x) var(--tw-translate-y);
@@ -1401,15 +1423,10 @@
     --tw-scale-z: 100%;
     scale: var(--tw-scale-x) var(--tw-scale-y);
   }
-  .scale-110 {
-    --tw-scale-x: 110%;
-    --tw-scale-y: 110%;
-    --tw-scale-z: 110%;
-    scale: var(--tw-scale-x) var(--tw-scale-y);
-  }
   .scale-\[0\.98\] {
     scale: 0.98;
   }
+<<<<<<< Updated upstream
   .scale-\[1\.02\] {
     scale: 1.02;
   }
@@ -1419,6 +1436,8 @@
   .rotate-45 {
     rotate: 45deg;
   }
+=======
+>>>>>>> Stashed changes
   .rotate-180 {
     rotate: 180deg;
   }
@@ -1556,6 +1575,7 @@
       margin-block-end: calc(calc(var(--spacing) * 1) * calc(1 - var(--tw-space-y-reverse)));
     }
   }
+<<<<<<< Updated upstream
   .space-y-1\.5 {
     :where(& > :not(:last-child)) {
       --tw-space-y-reverse: 0;
@@ -1571,10 +1591,13 @@
     }
   }
   .space-y-3 {
+=======
+  .space-y-2 {
+>>>>>>> Stashed changes
     :where(& > :not(:last-child)) {
       --tw-space-y-reverse: 0;
-      margin-block-start: calc(calc(var(--spacing) * 3) * var(--tw-space-y-reverse));
-      margin-block-end: calc(calc(var(--spacing) * 3) * calc(1 - var(--tw-space-y-reverse)));
+      margin-block-start: calc(calc(var(--spacing) * 2) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 2) * calc(1 - var(--tw-space-y-reverse)));
     }
   }
   .space-y-4 {
@@ -1750,6 +1773,7 @@
     border-style: var(--tw-border-style);
     border-width: 2px;
   }
+<<<<<<< Updated upstream
   .border-4 {
     border-style: var(--tw-border-style);
     border-width: 4px;
@@ -1758,6 +1782,8 @@
     border-style: var(--tw-border-style);
     border-width: 6px;
   }
+=======
+>>>>>>> Stashed changes
   .border-t {
     border-top-style: var(--tw-border-style);
     border-top-width: 1px;
@@ -1773,10 +1799,6 @@
   .border-r-2 {
     border-right-style: var(--tw-border-style);
     border-right-width: 2px;
-  }
-  .border-r-3 {
-    border-right-style: var(--tw-border-style);
-    border-right-width: 3px;
   }
   .border-b {
     border-bottom-style: var(--tw-border-style);
@@ -1875,6 +1897,7 @@
   .border-gray-300 {
     border-color: var(--color-gray-300);
   }
+<<<<<<< Updated upstream
   .border-gray-600\/50 {
     border-color: color-mix(in srgb, oklch(44.6% 0.03 256.802) 50%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -1926,6 +1949,11 @@
   .border-primary {
     border-color: var(--color-primary);
   }
+=======
+  .border-green-200 {
+    border-color: var(--color-green-200);
+  }
+>>>>>>> Stashed changes
   .border-primary\/60 {
     border-color: color-mix(in srgb, #f41e26 60%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -1959,6 +1987,7 @@
   .border-red-500 {
     border-color: var(--color-red-500);
   }
+<<<<<<< Updated upstream
   .border-rose-400 {
     border-color: var(--color-rose-400);
   }
@@ -1977,6 +2006,8 @@
   .border-transparent {
     border-color: transparent;
   }
+=======
+>>>>>>> Stashed changes
   .border-white {
     border-color: var(--color-white);
   }
@@ -2013,6 +2044,7 @@
   .border-t-white {
     border-top-color: var(--color-white);
   }
+<<<<<<< Updated upstream
   .border-r-gray-800 {
     border-right-color: var(--color-gray-800);
   }
@@ -2079,6 +2111,8 @@
       background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
     }
   }
+=======
+>>>>>>> Stashed changes
   .bg-black\/60 {
     background-color: color-mix(in srgb, #000 60%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -2178,6 +2212,7 @@
   .bg-gray-300 {
     background-color: var(--color-gray-300);
   }
+<<<<<<< Updated upstream
   .bg-gray-400 {
     background-color: var(--color-gray-400);
   }
@@ -2208,6 +2243,11 @@
   .bg-green-50 {
     background-color: var(--color-green-50);
   }
+=======
+  .bg-gray-800 {
+    background-color: var(--color-gray-800);
+  }
+>>>>>>> Stashed changes
   .bg-green-100 {
     background-color: var(--color-green-100);
   }
@@ -2217,6 +2257,7 @@
   .bg-green-500 {
     background-color: var(--color-green-500);
   }
+<<<<<<< Updated upstream
   .bg-green-600 {
     background-color: var(--color-green-600);
   }
@@ -2289,6 +2330,8 @@
   .bg-purple-300 {
     background-color: var(--color-purple-300);
   }
+=======
+>>>>>>> Stashed changes
   .bg-purple-500 {
     background-color: var(--color-purple-500);
   }
@@ -2507,6 +2550,7 @@
     --tw-gradient-from: var(--color-blue-600);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
+<<<<<<< Updated upstream
   .from-cyan-100 {
     --tw-gradient-from: var(--color-cyan-100);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
@@ -2523,6 +2567,8 @@
     --tw-gradient-from: var(--color-emerald-400);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
+=======
+>>>>>>> Stashed changes
   .from-emerald-500 {
     --tw-gradient-from: var(--color-emerald-500);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
@@ -2646,6 +2692,7 @@
     --tw-gradient-from: var(--color-slate-50);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
+<<<<<<< Updated upstream
   .from-slate-400 {
     --tw-gradient-from: var(--color-slate-400);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
@@ -2666,6 +2713,8 @@
     --tw-gradient-from: var(--color-violet-500);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
+=======
+>>>>>>> Stashed changes
   .from-white {
     --tw-gradient-from: var(--color-white);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
@@ -2682,14 +2731,6 @@
     --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-via-stops);
   }
-  .via-blue-50\/30 {
-    --tw-gradient-via: color-mix(in srgb, oklch(97% 0.014 254.604) 30%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      --tw-gradient-via: color-mix(in oklab, var(--color-blue-50) 30%, transparent);
-    }
-    --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-via-stops);
-  }
   .via-blue-50\/50 {
     --tw-gradient-via: color-mix(in srgb, oklch(97% 0.014 254.604) 50%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -2698,6 +2739,7 @@
     --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-via-stops);
   }
+<<<<<<< Updated upstream
   .via-blue-500\/20 {
     --tw-gradient-via: color-mix(in srgb, oklch(62.3% 0.214 259.815) 20%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -2716,6 +2758,8 @@
     --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-via-stops);
   }
+=======
+>>>>>>> Stashed changes
   .via-emerald-50 {
     --tw-gradient-via: var(--color-emerald-50);
     --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
@@ -2731,11 +2775,6 @@
     @supports (color: color-mix(in lab, red, red)) {
       --tw-gradient-via: color-mix(in oklab, var(--color-gray-50) 80%, transparent);
     }
-    --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-via-stops);
-  }
-  .via-gray-800 {
-    --tw-gradient-via: var(--color-gray-800);
     --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-via-stops);
   }
@@ -2800,6 +2839,7 @@
     --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-via-stops);
   }
+<<<<<<< Updated upstream
   .via-white\/20 {
     --tw-gradient-via: color-mix(in srgb, #fff 20%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -2831,6 +2871,8 @@
     }
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
+=======
+>>>>>>> Stashed changes
   .to-blue-600 {
     --tw-gradient-to: var(--color-blue-600);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
@@ -2864,22 +2906,6 @@
   }
   .to-gray-500 {
     --tw-gradient-to: var(--color-gray-500);
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-  }
-  .to-gray-600 {
-    --tw-gradient-to: var(--color-gray-600);
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-  }
-  .to-gray-900 {
-    --tw-gradient-to: var(--color-gray-900);
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-  }
-  .to-green-100 {
-    --tw-gradient-to: var(--color-green-100);
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-  }
-  .to-green-400 {
-    --tw-gradient-to: var(--color-green-400);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
   .to-green-500 {
@@ -3356,6 +3382,7 @@
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
   }
+<<<<<<< Updated upstream
   .tracking-tight {
     --tw-tracking: var(--tracking-tight);
     letter-spacing: var(--tracking-tight);
@@ -3364,10 +3391,13 @@
     --tw-tracking: var(--tracking-wide);
     letter-spacing: var(--tracking-wide);
   }
+=======
+>>>>>>> Stashed changes
   .tracking-wider {
     --tw-tracking: var(--tracking-wider);
     letter-spacing: var(--tracking-wider);
   }
+<<<<<<< Updated upstream
   .text-nowrap {
     text-wrap: nowrap;
   }
@@ -3383,6 +3413,8 @@
   .break-all {
     word-break: break-all;
   }
+=======
+>>>>>>> Stashed changes
   .whitespace-nowrap {
     white-space: nowrap;
   }
@@ -3422,6 +3454,7 @@
   .text-blue-700 {
     color: var(--color-blue-700);
   }
+<<<<<<< Updated upstream
   .text-blue-800 {
     color: var(--color-blue-800);
   }
@@ -3446,6 +3479,8 @@
   .text-emerald-600 {
     color: var(--color-emerald-600);
   }
+=======
+>>>>>>> Stashed changes
   .text-emerald-700 {
     color: var(--color-emerald-700);
   }
@@ -3479,6 +3514,7 @@
   .text-gray-900 {
     color: var(--color-gray-900);
   }
+<<<<<<< Updated upstream
   .text-green-400 {
     color: var(--color-green-400);
   }
@@ -3536,6 +3572,11 @@
   .text-purple-600 {
     color: var(--color-purple-600);
   }
+=======
+  .text-green-700 {
+    color: var(--color-green-700);
+  }
+>>>>>>> Stashed changes
   .text-purple-700 {
     color: var(--color-purple-700);
   }
@@ -3626,6 +3667,7 @@
   .text-white {
     color: var(--color-white);
   }
+<<<<<<< Updated upstream
   .text-white\/90 {
     color: color-mix(in srgb, #fff 90%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -3665,6 +3707,11 @@
       color: var(--color-gray-400);
     }
   }
+=======
+  .uppercase {
+    text-transform: uppercase;
+  }
+>>>>>>> Stashed changes
   .opacity-0 {
     opacity: 0%;
   }
@@ -4121,6 +4168,7 @@
       }
     }
   }
+<<<<<<< Updated upstream
   .hover\:border-blue-300 {
     &:hover {
       @media (hover: hover) {
@@ -4149,6 +4197,8 @@
       }
     }
   }
+=======
+>>>>>>> Stashed changes
   .hover\:bg-blue-50 {
     &:hover {
       @media (hover: hover) {
@@ -5570,6 +5620,7 @@
       border-color: var(--color-blue-700);
     }
   }
+<<<<<<< Updated upstream
   .dark\:border-blue-700\/40 {
     &:where(.dark, .dark *) {
       border-color: color-mix(in srgb, oklch(48.8% 0.243 264.376) 40%, transparent);
@@ -5615,6 +5666,8 @@
       }
     }
   }
+=======
+>>>>>>> Stashed changes
   .dark\:border-blue-800\/60 {
     &:where(.dark, .dark *) {
       border-color: color-mix(in srgb, oklch(42.4% 0.199 265.638) 60%, transparent);
@@ -6254,6 +6307,7 @@
       }
     }
   }
+<<<<<<< Updated upstream
   .dark\:bg-green-900\/40 {
     &:where(.dark, .dark *) {
       background-color: color-mix(in srgb, oklch(39.3% 0.095 152.535) 40%, transparent);
@@ -6523,6 +6577,8 @@
       }
     }
   }
+=======
+>>>>>>> Stashed changes
   .dark\:bg-red-900\/20 {
     &:where(.dark, .dark *) {
       background-color: color-mix(in srgb, oklch(39.6% 0.141 25.723) 20%, transparent);
@@ -7039,6 +7095,7 @@
       --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
     }
   }
+<<<<<<< Updated upstream
   .dark\:from-violet-500\/20 {
     &:where(.dark, .dark *) {
       --tw-gradient-from: color-mix(in srgb, oklch(60.6% 0.25 292.717) 20%, transparent);
@@ -7055,21 +7112,13 @@
       --tw-gradient-stops: var(--tw-gradient-via-stops);
     }
   }
+=======
+>>>>>>> Stashed changes
   .dark\:via-blue-800\/30 {
     &:where(.dark, .dark *) {
       --tw-gradient-via: color-mix(in srgb, oklch(42.4% 0.199 265.638) 30%, transparent);
       @supports (color: color-mix(in lab, red, red)) {
         --tw-gradient-via: color-mix(in oklab, var(--color-blue-800) 30%, transparent);
-      }
-      --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
-      --tw-gradient-stops: var(--tw-gradient-via-stops);
-    }
-  }
-  .dark\:via-blue-900\/20 {
-    &:where(.dark, .dark *) {
-      --tw-gradient-via: color-mix(in srgb, oklch(37.9% 0.146 265.522) 20%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        --tw-gradient-via: color-mix(in oklab, var(--color-blue-900) 20%, transparent);
       }
       --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
       --tw-gradient-stops: var(--tw-gradient-via-stops);
@@ -7129,16 +7178,6 @@
       --tw-gradient-stops: var(--tw-gradient-via-stops);
     }
   }
-  .dark\:via-slate-800\/50 {
-    &:where(.dark, .dark *) {
-      --tw-gradient-via: color-mix(in srgb, oklch(27.9% 0.041 260.031) 50%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        --tw-gradient-via: color-mix(in oklab, var(--color-slate-800) 50%, transparent);
-      }
-      --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
-      --tw-gradient-stops: var(--tw-gradient-via-stops);
-    }
-  }
   .dark\:via-slate-800\/80 {
     &:where(.dark, .dark *) {
       --tw-gradient-via: color-mix(in srgb, oklch(27.9% 0.041 260.031) 80%, transparent);
@@ -7185,6 +7224,7 @@
       --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
     }
   }
+<<<<<<< Updated upstream
   .dark\:to-gray-300 {
     &:where(.dark, .dark *) {
       --tw-gradient-to: var(--color-gray-300);
@@ -7200,6 +7240,8 @@
       --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
     }
   }
+=======
+>>>>>>> Stashed changes
   .dark\:to-indigo-400 {
     &:where(.dark, .dark *) {
       --tw-gradient-to: var(--color-indigo-400);
@@ -7565,6 +7607,7 @@
       color: var(--color-purple-300);
     }
   }
+<<<<<<< Updated upstream
   .dark\:text-purple-400 {
     &:where(.dark, .dark *) {
       color: var(--color-purple-400);
@@ -7575,6 +7618,8 @@
       color: var(--color-red-200);
     }
   }
+=======
+>>>>>>> Stashed changes
   .dark\:text-red-300 {
     &:where(.dark, .dark *) {
       color: var(--color-red-300);
@@ -7832,6 +7877,7 @@
       }
     }
   }
+<<<<<<< Updated upstream
   .dark\:placeholder\:text-slate-500 {
     &:where(.dark, .dark *) {
       &::placeholder {
@@ -7905,6 +7951,8 @@
       }
     }
   }
+=======
+>>>>>>> Stashed changes
   .dark\:hover\:bg-blue-900\/20 {
     &:where(.dark, .dark *) {
       &:hover {
@@ -9866,6 +9914,7 @@ html.session-expiring::after {
   syntax: "*";
   inherits: false;
 }
+<<<<<<< Updated upstream
 @property --tw-ordinal {
   syntax: "*";
   inherits: false;
@@ -9886,6 +9935,8 @@ html.session-expiring::after {
   syntax: "*";
   inherits: false;
 }
+=======
+>>>>>>> Stashed changes
 @property --tw-shadow {
   syntax: "*";
   inherits: false;
@@ -10048,6 +10099,14 @@ html.session-expiring::after {
   syntax: "*";
   inherits: false;
 }
+<<<<<<< Updated upstream
+=======
+@property --tw-divide-y-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+>>>>>>> Stashed changes
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -10116,11 +10175,14 @@ html.session-expiring::after {
       --tw-leading: initial;
       --tw-font-weight: initial;
       --tw-tracking: initial;
+<<<<<<< Updated upstream
       --tw-ordinal: initial;
       --tw-slashed-zero: initial;
       --tw-numeric-figure: initial;
       --tw-numeric-spacing: initial;
       --tw-numeric-fraction: initial;
+=======
+>>>>>>> Stashed changes
       --tw-shadow: 0 0 #0000;
       --tw-shadow-color: initial;
       --tw-shadow-alpha: 100%;
@@ -10159,6 +10221,10 @@ html.session-expiring::after {
       --tw-backdrop-sepia: initial;
       --tw-duration: initial;
       --tw-ease: initial;
+<<<<<<< Updated upstream
+=======
+      --tw-divide-y-reverse: 0;
+>>>>>>> Stashed changes
     }
   }
 }
