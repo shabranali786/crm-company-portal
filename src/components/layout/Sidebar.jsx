@@ -232,18 +232,18 @@ const Sidebar = ({ isCollapsed, onToggle }) => {
           {hasSubItems ? (
             <button
               onClick={() => toggleExpanded(item.title)}
-              className={`w-full flex items-center justify-between px-3 py-3 rounded-xl text-left transition-all duration-300 ${
+              className={`w-full flex items-center justify-between px-3 py-3 rounded-xl text-left transition-all duration-300 group transform hover:scale-[1.02] hover:translate-x-1 ${
                 isItemActive
-                  ? "bg-gradient-to-r from-blue-50 via-blue-50 to-indigo-50 dark:from-blue-900/30 dark:via-blue-800/30 dark:to-indigo-900/30 text-blue-700 dark:text-blue-400 shadow-lg"
-                  : "text-gray-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-gray-50 hover:to-indigo-50/30 dark:hover:from-slate-800 dark:hover:to-indigo-900/20"
+                  ? "bg-gradient-to-r from-blue-50 via-blue-50 to-indigo-50 dark:from-blue-900/30 dark:via-blue-800/30 dark:to-indigo-900/30 text-blue-700 dark:text-blue-400 shadow-lg shadow-blue-100/50 dark:shadow-blue-900/20"
+                  : "text-gray-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-gray-50 hover:via-blue-50/30 hover:to-indigo-50/30 dark:hover:from-slate-800 dark:hover:via-blue-900/20 dark:hover:to-indigo-900/20 hover:text-gray-800 dark:hover:text-gray-200 hover:shadow-md"
               }`}
             >
               <div className="flex items-center space-x-3">
                 <IconComponent
-                  className={`w-5 h-5 transition-all duration-300 ${
+                  className={`w-5 h-5 transition-all duration-300 transform group-hover:scale-110 ${
                     isItemActive
-                      ? "text-blue-700 dark:text-blue-400"
-                      : "text-gray-500 dark:text-gray-400"
+                      ? "text-blue-700 dark:text-blue-400 drop-shadow-sm"
+                      : "text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400"
                   }`}
                 />
                 {!isCollapsed && (
@@ -270,19 +270,19 @@ const Sidebar = ({ isCollapsed, onToggle }) => {
             <NavLink
               to={item.path}
               className={({ isActive }) =>
-                `flex items-center justify-between px-3 py-3 rounded-xl transition-all duration-300 ${
+                `flex items-center justify-between px-3 py-3 rounded-xl transition-all duration-300 group transform hover:scale-[1.02] hover:translate-x-1 ${
                   isActive
-                    ? "bg-gradient-to-r from-blue-50 via-blue-50 to-indigo-50 dark:from-blue-900/30 dark:via-blue-800/30 dark:to-indigo-900/30 text-blue-700 dark:text-blue-400 shadow-lg"
-                    : "text-gray-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-gray-50 hover:to-indigo-50/30 dark:hover:from-slate-800 dark:hover:to-indigo-900/20"
+                    ? "bg-gradient-to-r from-blue-50 via-blue-50 to-indigo-50 dark:from-blue-900/30 dark:via-blue-800/30 dark:to-indigo-900/30 text-blue-700 dark:text-blue-400 shadow-lg shadow-blue-100/50 dark:shadow-blue-900/20"
+                    : "text-gray-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-gray-50 hover:via-blue-50/30 hover:to-indigo-50/30 dark:hover:from-slate-800 dark:hover:via-blue-900/20 dark:hover:to-indigo-900/20 hover:text-gray-800 dark:hover:text-gray-200 hover:shadow-md"
                 }`
               }
             >
               <div className="flex items-center space-x-3">
                 <IconComponent
-                  className={`w-5 h-5 ${
+                  className={`w-5 h-5 transition-all duration-300 transform group-hover:scale-110 ${
                     isActive(item.path)
-                      ? "text-blue-700 dark:text-blue-400"
-                      : "text-gray-500 dark:text-gray-400"
+                      ? "text-blue-700 dark:text-blue-400 drop-shadow-sm"
+                      : "text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400"
                   }`}
                 />
                 {!isCollapsed && (
@@ -319,10 +319,10 @@ const Sidebar = ({ isCollapsed, onToggle }) => {
                   <NavLink
                     to={subItem.path}
                     className={({ isActive }) =>
-                      `block pl-4 pr-3 py-2 text-sm rounded-lg transition-all duration-300 ${
+                      `block pl-4 pr-3 py-2.5 text-sm rounded-lg transition-all duration-300 transform hover:translate-x-1 ${
                         isActive
-                          ? "text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 font-semibold"
-                          : "text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20"
+                          ? "text-blue-700 dark:text-blue-400 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 font-semibold border-r-2 border-blue-600 dark:border-blue-500 shadow-md"
+                          : "text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-transparent dark:hover:from-blue-900/20 dark:hover:to-transparent"
                       }`
                     }
                   >
@@ -362,7 +362,7 @@ const Sidebar = ({ isCollapsed, onToggle }) => {
           )}
           <button
             onClick={onToggle}
-            className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-700 transition-all duration-300"
+            className="p-2 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 dark:hover:from-blue-900/30 dark:hover:to-indigo-900/30 hover:shadow-md transition-all duration-300 transform hover:scale-105"
           >
             <FiMenu className="w-5 h-5 text-gray-600 dark:text-gray-300" />
           </button>
@@ -385,15 +385,15 @@ const Sidebar = ({ isCollapsed, onToggle }) => {
           <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-100/60 dark:border-slate-700/60 bg-gradient-to-t from-gray-50/90 to-transparent dark:from-slate-900/90">
             <div className="flex items-center space-x-3">
               <div
-                className={`w-10 h-10 rounded-full flex items-center justify-center shadow-lg border-2 border-white ${
+                className={`w-10 h-10 rounded-full flex items-center justify-center shadow-lg border-2 border-white transform hover:scale-110 transition-all duration-300 cursor-pointer ${
                   isCrmOwner
-                    ? "bg-gradient-to-r from-purple-500 to-pink-500"
+                    ? "bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500"
                     : userRole === "company_owner"
-                    ? "bg-gradient-to-r from-blue-500 to-indigo-500"
-                    : "bg-gradient-to-r from-green-500 to-emerald-500"
+                    ? "bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"
+                    : "bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500"
                 }`}
               >
-                <span className="text-white font-bold text-sm">
+                <span className="text-white font-bold text-sm drop-shadow-sm">
                   {user?.name?.charAt(0) || "U"}
                 </span>
               </div>
