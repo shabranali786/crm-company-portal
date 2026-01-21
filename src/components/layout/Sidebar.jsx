@@ -16,15 +16,6 @@ import {
   FiMail,
   FiGlobe,
 } from "react-icons/fi";
-<<<<<<< Updated upstream
-import { BsFillBuildingFill, BsGraphUp, BsPeople, BsGear } from "react-icons/bs";
-import { useSelector } from "react-redux";
-import { checkPermission } from "../../utils/permissions";
-
-// ============================================
-// CRM OWNER MENUS (Platform Level - Completely Separate)
-// ============================================
-=======
 import {
   BsFillBuildingFill,
   BsGraphUp,
@@ -34,7 +25,6 @@ import {
 import { useSelector } from "react-redux";
 import { checkPermission } from "../../utils/permissions";
 
->>>>>>> Stashed changes
 const crmOwnerMenuItems = [
   {
     title: "Dashboard",
@@ -88,13 +78,6 @@ const crmOwnerMenuItems = [
   },
 ];
 
-<<<<<<< Updated upstream
-// ============================================
-// COMPANY MENUS (For company_owner & company_user)
-// Permission-based show/hide
-// ============================================
-=======
->>>>>>> Stashed changes
 const companyMenuItems = [
   {
     title: "Dashboard",
@@ -120,10 +103,6 @@ const companyMenuItems = [
     type: "group",
     open_when: ["/transactions", "/chargebacks", "/expenses"],
     items: [
-<<<<<<< Updated upstream
-      { title: "Transactions", path: "/transactions", permissions: ["payment.index"] },
-      { title: "Chargebacks", path: "/chargebacks", permissions: ["chargeback.index"] },
-=======
       {
         title: "Transactions",
         path: "/transactions",
@@ -134,7 +113,6 @@ const companyMenuItems = [
         path: "/chargebacks",
         permissions: ["chargeback.index"],
       },
->>>>>>> Stashed changes
       { title: "Expenses", path: "/expenses", permissions: ["expenses.index"] },
     ],
   },
@@ -144,11 +122,6 @@ const companyMenuItems = [
     type: "group",
     open_when: ["/reports", "/unit-reports", "/sales-reports"],
     items: [
-<<<<<<< Updated upstream
-      { title: "Unit Report", path: "/unit-reports", permissions: ["unit-report.index"] },
-      { title: "Sales Report", path: "/sales-reports", permissions: ["sales-report.index"] },
-      { title: "Team Report", path: "/team-reports", permissions: ["team-wise-report.index"] },
-=======
       {
         title: "Unit Report",
         path: "/unit-reports",
@@ -164,7 +137,6 @@ const companyMenuItems = [
         path: "/team-reports",
         permissions: ["team-wise-report.index"],
       },
->>>>>>> Stashed changes
     ],
   },
   {
@@ -173,10 +145,6 @@ const companyMenuItems = [
     type: "group",
     open_when: ["/campaigns", "/contact-list"],
     items: [
-<<<<<<< Updated upstream
-      { title: "Campaigns", path: "/campaigns", permissions: ["campaign.index"] },
-      { title: "Contact List", path: "/contact-list", permissions: ["contact-list.index"] },
-=======
       {
         title: "Campaigns",
         path: "/campaigns",
@@ -187,7 +155,6 @@ const companyMenuItems = [
         path: "/contact-list",
         permissions: ["contact-list.index"],
       },
->>>>>>> Stashed changes
     ],
   },
   {
@@ -199,15 +166,11 @@ const companyMenuItems = [
       { title: "Users", path: "/users", permissions: ["user.index"] },
       { title: "Teams", path: "/teams", permissions: ["team.index"] },
       { title: "Roles", path: "/roles", permissions: ["role.index"] },
-<<<<<<< Updated upstream
-      { title: "Permissions", path: "/permissions", permissions: ["permission.index"] },
-=======
       {
         title: "Permissions",
         path: "/permissions",
         permissions: ["permission.index"],
       },
->>>>>>> Stashed changes
     ],
   },
   {
@@ -235,11 +198,7 @@ const Sidebar = ({ isCollapsed, onToggle }) => {
           return checkPermission(user, menuItem.permissions) ? menuItem : null;
         } else if (menuItem.type === "group") {
           const filteredSubItems = menuItem.items?.filter((subItem) =>
-<<<<<<< Updated upstream
-            checkPermission(user, subItem.permissions)
-=======
             checkPermission(user, subItem.permissions),
->>>>>>> Stashed changes
           );
           if (filteredSubItems && filteredSubItems.length > 0) {
             return { ...menuItem, items: filteredSubItems };
@@ -261,11 +220,7 @@ const Sidebar = ({ isCollapsed, onToggle }) => {
       companyMenuItems.forEach((item) => {
         if (item.type === "group" && item.open_when) {
           const shouldOpen = item.open_when.some((pattern) =>
-<<<<<<< Updated upstream
-            location.pathname.includes(pattern)
-=======
             location.pathname.includes(pattern),
->>>>>>> Stashed changes
           );
           if (shouldOpen) {
             newExpanded[item.title] = true;
@@ -423,13 +378,6 @@ const Sidebar = ({ isCollapsed, onToggle }) => {
         <div className="h-16 flex items-center justify-between px-4 border-b border-gray-100/60 dark:border-slate-700/60">
           {!isCollapsed && (
             <div className="flex items-center space-x-2">
-<<<<<<< Updated upstream
-              <div className={`w-8 h-8 rounded-xl flex items-center justify-center shadow-lg ${
-                isCrmOwner
-                  ? "bg-gradient-to-r from-purple-600 to-pink-600"
-                  : "bg-gradient-to-r from-blue-600 to-indigo-600"
-              }`}>
-=======
               <div
                 className={`w-8 h-8 rounded-xl flex items-center justify-center shadow-lg ${
                   isCrmOwner
@@ -437,7 +385,6 @@ const Sidebar = ({ isCollapsed, onToggle }) => {
                     : "bg-gradient-to-r from-blue-600 to-indigo-600"
                 }`}
               >
->>>>>>> Stashed changes
                 <span className="text-white font-bold text-sm">C</span>
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-gray-800 to-indigo-800 dark:from-gray-200 dark:to-indigo-400 bg-clip-text text-transparent">
@@ -474,13 +421,8 @@ const Sidebar = ({ isCollapsed, onToggle }) => {
                   isCrmOwner
                     ? "bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500"
                     : userRole === "company_owner"
-<<<<<<< Updated upstream
-                    ? "bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"
-                    : "bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500"
-=======
                       ? "bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"
                       : "bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500"
->>>>>>> Stashed changes
                 }`}
               >
                 <span className="text-white font-bold text-sm drop-shadow-sm">
@@ -495,13 +437,8 @@ const Sidebar = ({ isCollapsed, onToggle }) => {
                   {isCrmOwner
                     ? "Platform Owner"
                     : userRole === "company_owner"
-<<<<<<< Updated upstream
-                    ? "Company Admin"
-                    : "Team Member"}
-=======
                       ? "Company Admin"
                       : "Team Member"}
->>>>>>> Stashed changes
                 </p>
               </div>
             </div>
