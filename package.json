@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm:tailwind\" \"vite\"",
+    "dev": "concurrently \"npm:tailwind\" \"vite\" \"npm:server\"",
+    "server": "json-server --watch src/dummydata/login.json --port 3001",
     "tailwind": "npx @tailwindcss/cli -i ./src/tailwind.css -o ./src/main.css --watch",
     "build": "vite build",
     "lint": "eslint .",

@@ -18,9 +18,12 @@ dist-ssr
 .idea
 .DS_Store
 *.suo
+*.env
 *.ntvs*
 *.njsproj
 *.sln
+*.md
+*.demo-crm
 *.sw?
 *.claude
 *.zip

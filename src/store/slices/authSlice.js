@@ -6,7 +6,8 @@ const initialState = {
   isAuthenticated: false,
   loading: false,
   error: null,
-  userRole: null,
+  userRole: null,      // crm_owner, company_owner, company_user
+  roles: [],           // ['superadmin'], ['sales'], etc.
   companyId: null,
   permissions: [],
 };
@@ -25,10 +26,11 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.userRole = action.payload.user.role;
+      state.roles = action.payload.user.roles || [];
       state.companyId = action.payload.user.companyId;
-      state.permissions = action.payload.user.permissions;
+      state.permissions = action.payload.user.permissions || [];
       state.error = null;
-      
+
       localStorage.setItem('token', action.payload.token);
       localStorage.setItem('user', JSON.stringify(action.payload.user));
     },
@@ -38,6 +40,7 @@ const authSlice = createSlice({
       state.user = null;
       state.token = null;
       state.userRole = null;
+      state.roles = [];
       state.companyId = null;
       state.permissions = [];
       state.error = action.payload;
@@ -47,17 +50,18 @@ const authSlice = createSlice({
       state.user = null;
       state.token = null;
       state.userRole = null;
+      state.roles = [];
       state.companyId = null;
       state.permissions = [];
       state.error = null;
-      
+
       localStorage.removeItem('token');
       localStorage.removeItem('user');
     },
     initializeAuth: (state) => {
       const token = localStorage.getItem('token');
       const user = localStorage.getItem('user');
-      
+
       if (token && user) {
         try {
           const parsedUser = JSON.parse(user);
@@ -65,8 +69,9 @@ const authSlice = createSlice({
           state.user = parsedUser;
           state.token = token;
           state.userRole = parsedUser.role;
+          state.roles = parsedUser.roles || [];
           state.companyId = parsedUser.companyId;
-          state.permissions = parsedUser.permissions;
+          state.permissions = parsedUser.permissions || [];
         } catch (error) {
           localStorage.removeItem('token');
           localStorage.removeItem('user');

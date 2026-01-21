@@ -1,0 +1,105 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "owner@crmplatform.com",
+      "password": "owner123",
+      "name": "CRM Platform Owner",
+      "role": "crm_owner",
+      "roles": ["crm_owner"],
+      "companyId": null,
+      "avatar": null,
+      "permissions": [
+        "manage_all_companies",
+        "manage_platform_settings",
+        "view_platform_analytics",
+        "manage_platform_billing",
+        "manage_subscriptions"
+      ],
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "email": "admin@techcorp.com",
+      "password": "admin123",
+      "name": "Ahmed Ali",
+      "role": "company_owner",
+      "roles": ["superadmin"],
+      "companyId": 1,
+      "avatar": null,
+      "permissions": [],
+      "status": "active"
+    },
+    {
+      "id": 3,
+      "email": "sales@techcorp.com",
+      "password": "sales123",
+      "name": "Sara Khan",
+      "role": "company_user",
+      "roles": ["sales"],
+      "companyId": 1,
+      "department": "Sales",
+      "avatar": null,
+      "permissions": [
+        "dashboard.index",
+        "lead.index",
+        "lead.create",
+        "lead.edit",
+        "customer.index",
+        "invoice.index"
+      ],
+      "status": "active"
+    },
+    {
+      "id": 4,
+      "email": "admin@digitalagency.com",
+      "password": "digital123",
+      "name": "Usman Shah",
+      "role": "company_owner",
+      "roles": ["superadmin"],
+      "companyId": 2,
+      "avatar": null,
+      "permissions": [],
+      "status": "active"
+    },
+    {
+      "id": 5,
+      "email": "marketing@digitalagency.com",
+      "password": "marketing123",
+      "name": "Fatima Ahmed",
+      "role": "company_user",
+      "roles": ["marketing"],
+      "companyId": 2,
+      "department": "Marketing",
+      "avatar": null,
+      "permissions": [
+        "dashboard.index",
+        "lead.index",
+        "customer.index",
+        "campaign.index",
+        "contact-list.index"
+      ],
+      "status": "active"
+    }
+  ],
+  "companies": [
+    {
+      "id": 1,
+      "name": "Tech Corp Solutions",
+      "domain": "techcorp.com",
+      "industry": "Technology",
+      "size": "50-100",
+      "subscription": "premium",
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "name": "Digital Marketing Agency",
+      "domain": "digitalagency.com",
+      "industry": "Marketing",
+      "size": "10-50",
+      "subscription": "basic",
+      "status": "active"
+    }
+  ]
+}
