@@ -7,7 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Master from "./components/layout/Master";
-import { Dashboard } from "./pages/Allpages";
+import { Dashboard, Users } from "./pages/Allpages";
 import LoginForm from "./components/auth/LoginForm";
 import { Provider } from 'react-redux';
 import { store } from './store/store';
@@ -49,6 +49,7 @@ const AppContent = () => {
           }
         >
           <Route index element={<Dashboard />} />
+          <Route path="/users" element={<Users />} />
         </Route>
       </>
     )

@@ -6,7 +6,11 @@ export const checkPermission = (user, requiredPermissions) => {
 
   // SuperAdmin (company_owner) bypasses all permission checks
   const isSuperAdmin = user?.roles?.some(
-    (role) => role.toLowerCase() === "superadmin",
+    (role) => {
+      // Handle both string and object role formats
+      const roleName = typeof role === 'string' ? role : role?.name;
+      return roleName && roleName.toLowerCase() === "superadmin";
+    }
   );
   if (isSuperAdmin) return true;
 
@@ -45,7 +49,10 @@ export const isCrmOwner = (user) => {
 export const isCompanyOwner = (user) => {
   return (
     user?.role === "company_owner" ||
-    user?.roles?.some((role) => role.toLowerCase() === "superadmin")
+    user?.roles?.some((role) => {
+      const roleName = typeof role === 'string' ? role : role?.name;
+      return roleName && roleName.toLowerCase() === "superadmin";
+    })
   );
 };
 
