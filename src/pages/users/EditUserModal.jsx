@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect, useMemo } from "react";
 import {
   Dialog,
   Transition,
@@ -7,8 +7,12 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 import Select from "react-select";
+
 import { useSelectStyles } from "../../hooks/useSelectStyles";
-import { BsX, BsEye, BsEyeSlash } from "react-icons/bs";
+import { FiltersComponent } from "../../components/FiltersComponent";
+import toast from "react-hot-toast";
+import apiAxios from "../../api/ApiAxios";
+import ApiRequest from "../../api/ApiRequest";
 
 export default function EditUserModal({ open, onClose, user, onSubmit, loading }) {
   const [formData, setFormData] = useState({
@@ -18,10 +22,8 @@ export default function EditUserModal({ open, onClose, user, onSubmit, loading }
     role: null,
     status: null,
   });
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPw, setShowPw] = useState(false);
   const [errors, setErrors] = useState({});
-
-  const selectStyles = useSelectStyles();
 
   const roleOptions = [
     { value: "superadmin", label: "SuperAdmin" },
@@ -36,11 +38,25 @@ export default function EditUserModal({ open, onClose, user, onSubmit, loading }
     { value: "active", label: "Active" },
     { value: "inactive", label: "Inactive" },
   ];
+  const menuPortalTarget =
+    typeof document !== "undefined" ? document.body : null;
+
+  const selectStyles = useSelectStyles();
+
+  // Handle filter changes from FiltersComponent
+  const handleFilterChange = (filterType, selectedOption) => {
+    if (filterType === "role") {
+      setFormData((prev) => ({ ...prev, role: selectedOption }));
+      if (errors.role) {
+        setErrors((prev) => ({ ...prev, role: "" }));
+      }
+    }
+  };
 
   // Populate form when user data changes
   useEffect(() => {
     if (user && open) {
-      const userRole = user.roles && user.roles.length > 0 
+      const userRole = user.roles && user.roles.length > 0
         ? roleOptions.find(role => role.label === user.roles[0].name) || null
         : null;
 
@@ -132,104 +148,115 @@ export default function EditUserModal({ open, onClose, user, onSubmit, loading }
   };
 
   return (
-    <Transition show={open} as={Fragment}>
+    <Transition show={open} as={Fragment} appear>
       <Dialog as="div" className="relative z-[9999]" onClose={() => {}}>
         <TransitionChild
           as={Fragment}
-          enter="ease-out duration-300"
+          enter="ease-out duration-200"
           enterFrom="opacity-0"
           enterTo="opacity-100"
-          leave="ease-in duration-200"
+          leave="ease-in duration-150"
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" />
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-[2px]" />
         </TransitionChild>
 
         <div className="fixed inset-0 overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4">
             <TransitionChild
               as={Fragment}
-              enter="ease-out duration-300"
+              enter="ease-out duration-200"
               enterFrom="opacity-0 scale-95"
               enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
+              leave="ease-in duration-150"
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <DialogPanel className="w-full max-w-lg transform overflow-hidden rounded-2xl bg-white dark:bg-slate-800 shadow-2xl transition-all">
+              <DialogPanel className="transform transition-all w-full max-w-xl overflow-hidden rounded-2xl border border-transparent bg-white text-gray-900 shadow-xl dark:border-slate-700/60 dark:bg-slate-900 dark:text-slate-100 dark:shadow-black/40">
                 {/* Header */}
-                <div className="flex items-center justify-between border-b border-gray-200 dark:border-slate-700 px-6 py-4">
+                <div className="border-b border-gray-200 px-6 py-4 dark:border-slate-700/60">
                   <div>
-                    <DialogTitle className="text-xl font-bold text-gray-900 dark:text-slate-100">
+                    <DialogTitle className="text-lg font-semibold text-gray-900 dark:text-slate-100">
                       Edit User
                     </DialogTitle>
                     <p className="mt-1 text-sm text-gray-600 dark:text-slate-400">
                       Update user information and settings
                     </p>
                   </div>
-                  <button
-                    onClick={handleClose}
-                    className="rounded-lg p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:text-slate-300 dark:hover:bg-slate-700 transition-colors"
-                  >
-                    <BsX size={24} />
-                  </button>
                 </div>
 
                 {/* Form */}
-                <form onSubmit={handleSubmit} className="px-6 py-6">
-                  <div className="space-y-5">
+                <form onSubmit={handleSubmit} className="px-6 py-5 max-h-[60vh] overflow-y-auto">
+                  <div className="grid gap-4">
                     {/* Name */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
-                        Full Name <span className="text-red-500">*</span>
+                      <label>
+                        Name <span className="text-red-500">*</span>
                       </label>
-                      <input
-                        type="text"
-                        className={`w-full rounded-lg border px-3 py-2.5 text-sm outline-none transition-colors focus:ring-2 focus:ring-blue-500 dark:bg-slate-900 dark:text-slate-100 ${
-                          errors.name
-                            ? "border-red-500 focus:ring-red-500"
-                            : "border-gray-300 dark:border-slate-600"
-                        }`}
-                        placeholder="Enter full name"
-                        value={formData.name}
-                        onChange={(e) => handleChange("name", e.target.value)}
-                      />
+                      <div className="relative">
+                        <input
+                          className={`w-full rounded-full border px-4 py-3 pl-11 text-sm outline-none transition-colors focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-slate-900 dark:text-slate-100 ${
+                            errors.name
+                              ? "border-red-500 focus:ring-red-500"
+                              : "border-gray-300 dark:border-slate-600"
+                          }`}
+                          placeholder="e.g. John Doe"
+                          value={formData.name}
+                          onChange={(e) => handleChange("name", e.target.value)}
+                        />
+                        <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                          </svg>
+                        </div>
+                      </div>
                       {errors.name && (
-                        <p className="mt-1 text-xs text-red-500">{errors.name}</p>
+                        <span className="text-xs text-red-500 dark:text-red-400">
+                          {errors.name}
+                        </span>
                       )}
                     </div>
 
                     {/* Email */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
-                        Email Address <span className="text-red-500">*</span>
+                      <label>
+                        Email <span className="text-red-500">*</span>
                       </label>
-                      <input
-                        type="email"
-                        className={`w-full rounded-lg border px-3 py-2.5 text-sm outline-none transition-colors focus:ring-2 focus:ring-blue-500 dark:bg-slate-900 dark:text-slate-100 ${
-                          errors.email
-                            ? "border-red-500 focus:ring-red-500"
-                            : "border-gray-300 dark:border-slate-600"
-                        }`}
-                        placeholder="Enter email address"
-                        value={formData.email}
-                        onChange={(e) => handleChange("email", e.target.value)}
-                      />
+                      <div className="relative">
+                        <input
+                          type="email"
+                          className={`w-full rounded-full border px-4 py-3 pl-11 text-sm outline-none transition-colors focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-slate-900 dark:text-slate-100 ${
+                            errors.email
+                              ? "border-red-500 focus:ring-red-500"
+                              : "border-gray-300 dark:border-slate-600"
+                          }`}
+                          placeholder="e.g. john@example.com"
+                          value={formData.email}
+                          onChange={(e) => handleChange("email", e.target.value)}
+                        />
+                        <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                      </div>
                       {errors.email && (
-                        <p className="mt-1 text-xs text-red-500">{errors.email}</p>
+                        <span className="text-xs text-red-500 dark:text-red-400">
+                          {errors.email}
+                        </span>
                       )}
                     </div>
 
                     {/* Password */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                      <label>
                         Password <span className="text-xs text-gray-500">(leave blank to keep current)</span>
                       </label>
                       <div className="relative">
                         <input
-                          type={showPassword ? "text" : "password"}
-                          className={`w-full rounded-lg border px-3 py-2.5 pr-10 text-sm outline-none transition-colors focus:ring-2 focus:ring-blue-500 dark:bg-slate-900 dark:text-slate-100 ${
+                          type={showPw ? "text" : "password"}
+                          className={`w-full rounded-full border px-4 py-3 pl-11 pr-12 text-sm outline-none transition-colors focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-slate-900 dark:text-slate-100 ${
                             errors.password
                               ? "border-red-500 focus:ring-red-500"
                               : "border-gray-300 dark:border-slate-600"
@@ -238,86 +265,131 @@ export default function EditUserModal({ open, onClose, user, onSubmit, loading }
                           value={formData.password}
                           onChange={(e) => handleChange("password", e.target.value)}
                         />
+                        <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                          </svg>
+                        </div>
                         <button
                           type="button"
-                          onClick={() => setShowPassword(!showPassword)}
-                          className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-400 hover:text-gray-600 dark:text-slate-500 dark:hover:text-slate-300"
+                          onClick={() => setShowPw(!showPw)}
+                          className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-400 hover:text-gray-600 dark:text-slate-500 dark:hover:text-slate-300"
                         >
-                          {showPassword ? <BsEyeSlash size={18} /> : <BsEye size={18} />}
+                          {showPw ? (
+                            <svg
+                              className="size-5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"
+                              />
+                            </svg>
+                          ) : (
+                            <svg
+                              className="size-5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                              />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                              />
+                            </svg>
+                          )}
                         </button>
                       </div>
                       {errors.password && (
-                        <p className="mt-1 text-xs text-red-500">{errors.password}</p>
+                        <span className="text-xs text-red-500 dark:text-red-400">
+                          {errors.password}
+                        </span>
                       )}
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {/* Role */}
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                      {/* Role - Using FiltersComponent */}
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
-                          Role <span className="text-red-500">*</span>
-                        </label>
-                        <Select
-                          options={roleOptions}
-                          value={formData.role}
-                          onChange={(option) => handleChange("role", option)}
-                          styles={selectStyles}
-                          placeholder="Select role..."
-                          isSearchable
-                          menuPortalTarget={document.body}
+                        <FiltersComponent
+                          selectedRole={formData.role}
+                          onFilterChange={handleFilterChange}
+                          showRoles={true}
+                          isRoleSearchable={true}
+                          roleLabel={
+                            <>
+                              Role <span className="text-red-500">*</span>
+                            </>
+                          }
+                          // Hide all other filters
+                          showUnits={false}
+                          showBrands={false}
+                          showMerchants={false}
+                          showPaymentStatus={false}
+                          showTeams={false}
+                          showUsers={false}
+                          showPermissions={false}
+                          showLeads={false}
+                          showLeadEmail={false}
+                          showDateRange={false}
+                          showPaymentDateRange={false}
                         />
                         {errors.role && (
-                          <p className="mt-1 text-xs text-red-500">{errors.role}</p>
+                          <span className="text-xs text-red-500 dark:text-red-400">
+                            {errors.role}
+                          </span>
                         )}
                       </div>
 
                       {/* Status */}
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
-                          Status
-                        </label>
+                        <label>Status</label>
                         <Select
+                          className="rs-status"
+                          classNamePrefix="tm-select"
                           options={statusOptions}
                           value={formData.status}
                           onChange={(option) => handleChange("status", option)}
-                          styles={selectStyles}
-                          placeholder="Select status..."
                           isSearchable={false}
-                          menuPortalTarget={document.body}
+                          menuPortalTarget={menuPortalTarget}
+                          styles={selectStyles}
+                          placeholder="Select status"
                         />
                       </div>
                     </div>
                   </div>
-
-                  {/* Footer */}
-                  <div className="mt-8 flex items-center justify-end gap-3">
-                    <button
-                      type="button"
-                      onClick={handleClose}
-                      className="btn btn-outline"
-                      disabled={loading}
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      className="btn btn-primary"
-                      disabled={loading}
-                    >
-                      {loading ? (
-                        <div className="flex items-center gap-2">
-                          <svg className="animate-spin size-4" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                          </svg>
-                          Updating...
-                        </div>
-                      ) : (
-                        "Update User"
-                      )}
-                    </button>
-                  </div>
                 </form>
+
+                {/* Footer */}
+                <div className="border-t border-gray-200 dark:border-slate-700/60 px-6 py-4 flex items-center justify-end gap-3">
+                  <button
+                    type="button"
+                    className="btn btn-black"
+                    onClick={handleClose}
+                    disabled={loading}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    onClick={handleSubmit}
+                    className="btn btn-primary"
+                    disabled={loading}
+                  >
+                    {loading ? "Updating..." : "Update User"}
+                  </button>
+                </div>
               </DialogPanel>
             </TransitionChild>
           </div>

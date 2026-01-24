@@ -23,14 +23,14 @@ export default function ViewUserModal({ open, onClose, user }) {
   };
 
   return (
-    <Transition show={open} as={Fragment}>
+    <Transition show={open} as={Fragment} appear>
       <Dialog as="div" className="relative z-[9999]" onClose={() => {}}>
         <TransitionChild
           as={Fragment}
-          enter="ease-out duration-300"
+          enter="ease-out duration-200"
           enterFrom="opacity-0"
           enterTo="opacity-100"
-          leave="ease-in duration-200"
+          leave="ease-in duration-150"
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
@@ -41,10 +41,10 @@ export default function ViewUserModal({ open, onClose, user }) {
           <div className="flex min-h-full items-center justify-center p-4">
             <TransitionChild
               as={Fragment}
-              enter="ease-out duration-300"
+              enter="ease-out duration-200"
               enterFrom="opacity-0 scale-95"
               enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
+              leave="ease-in duration-150"
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
@@ -56,7 +56,7 @@ export default function ViewUserModal({ open, onClose, user }) {
                   </DialogTitle>
                   <button
                     onClick={onClose}
-                    className="rounded-lg p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:text-slate-300 dark:hover:bg-slate-700 transition-colors"
+                    className="rounded-full p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:text-slate-300 dark:hover:bg-slate-700 transition-colors"
                   >
                     <BsX size={24} />
                   </button>
@@ -249,7 +249,7 @@ export default function ViewUserModal({ open, onClose, user }) {
                 <div className="border-t border-gray-200 dark:border-slate-700 px-6 py-4 flex justify-end">
                   <button
                     onClick={onClose}
-                    className="btn btn-primary"
+                    className="btn btn-black"
                   >
                     Close
                   </button>

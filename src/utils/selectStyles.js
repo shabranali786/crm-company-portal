@@ -76,7 +76,7 @@ export const createSelectStyles = (config = {}) => {
     control: (base, state) => ({
       ...base,
       minHeight: controlMinHeight,
-      borderRadius: controlBorderRadius,
+      borderRadius: 9999, // Full rounded
       borderColor: state.isFocused
         ? controlBorderFocusColor
         : controlBorderColor,
@@ -87,7 +87,7 @@ export const createSelectStyles = (config = {}) => {
       backgroundColor: controlBg,
       ":hover": { borderColor: controlBorderFocusColor },
     }),
-    valueContainer: (base) => ({ ...base, padding: "0 12px" }),
+    valueContainer: (base) => ({ ...base, padding: "0 16px" }), // Increased padding for roundness
     placeholder: (base) => ({ ...base, color: placeholderColor }),
     singleValue: (base) => ({ ...base, color: textColor }),
     input: (base) => ({ ...base, color: textColor }),

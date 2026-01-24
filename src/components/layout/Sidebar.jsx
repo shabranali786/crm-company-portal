@@ -101,7 +101,12 @@ const companyMenuItems = [
     title: "Finance",
     icon: FiBriefcase,
     type: "group",
-    open_when: ["/transactions", "/chargebacks", "/expenses"],
+    open_when: [
+      "/transactions",
+      "/chargebacks",
+      "/external-payments",
+      "/expenses",
+    ],
     items: [
       {
         title: "Transactions",
@@ -113,14 +118,53 @@ const companyMenuItems = [
         path: "/chargebacks",
         permissions: ["chargeback.index"],
       },
+      {
+        title: "External Payments",
+        path: "/external-payments",
+        permissions: ["external-payment.index"],
+      },
       { title: "Expenses", path: "/expenses", permissions: ["expenses.index"] },
+    ],
+  },
+  {
+    title: "Brands & Merchants",
+    icon: FiGlobe,
+    type: "group",
+    open_when: ["/units", "/brands", "/chats", "/merchants"],
+    items: [
+      { title: "Units", path: "/units", permissions: ["unit.index"] },
+      { title: "Brands", path: "/brands", permissions: ["brand.index"] },
+      { title: "Chats", path: "/chats", permissions: ["chat.index"] },
+      { title: "Merchants", path: "/merchants", permissions: ["merchant.index"] },
+    ],
+  },
+  {
+    title: "Cases & Documents",
+    icon: FiFileText,
+    type: "group",
+    open_when: ["/office-letters"],
+    items: [
+      {
+        title: "Office Letters",
+        path: "/office-letters",
+        permissions: ["office-letter.index"],
+      },
     ],
   },
   {
     title: "Reports",
     icon: FiBarChart,
     type: "group",
-    open_when: ["/reports", "/unit-reports", "/sales-reports"],
+    open_when: [
+      "/unit-report",
+      "/unit-reports",
+      "/unit-wise-reports",
+      "/merchants-reports",
+      "/sales-reports",
+      "/team-reports",
+      "/combined-sales-reports",
+      "/sales",
+    ],
     items: [
       {
         title: "Unit Report",
@@ -133,17 +177,63 @@ const companyMenuItems = [
         permissions: ["sales-report.index"],
       },
       {
-        title: "Team Report",
+        title: "Merchant Report",
+        path: "/merchant-reports",
+        permissions: ["merchant-report.index"],
+      },
+      {
+        title: "Team Wise Report",
         path: "/team-reports",
         permissions: ["team-wise-report.index"],
       },
+      {
+        title: "Unit Wise Report",
+        path: "/unit-wise-reports",
+        permissions: ["unit-wise-report.index"],
+      },
+      {
+        title: "Combined Sales Report",
+        path: "/combined-sales-reports",
+        permissions: ["combined-sales-report.index"],
+      },
     ],
+  },
+  {
+    title: "Mapping",
+    icon: FiLayers,
+    type: "group",
+    open_when: ["/package-mapping", "/merchants-mapping"],
+    items: [
+      {
+        title: "Package Mapping",
+        path: "/package-mapping",
+        permissions: ["package.index"],
+      },
+      {
+        title: "Merchant Mapping",
+        path: "/merchant-mapping",
+        permissions: ["merchant-mapping.index"],
+      },
+    ],
+  },
+  {
+    title: "Emails",
+    icon: FiMail,
+    path: "/email-configs",
+    type: "single",
+    permissions: ["email-config.index"],
   },
   {
     title: "Marketing",
     icon: FiMail,
     type: "group",
-    open_when: ["/campaigns", "/contact-list"],
+    open_when: [
+      "/campaigns",
+      "/contact-list",
+      "/sms-services",
+      "/templates",
+      "/smtp-senders",
+    ],
     items: [
       {
         title: "Campaigns",
@@ -155,13 +245,23 @@ const companyMenuItems = [
         path: "/contact-list",
         permissions: ["contact-list.index"],
       },
+      {
+        title: "SMTP Senders",
+        path: "/smtp-senders",
+        permissions: ["smtp-sender.index"],
+      },
+      {
+        title: "SMS Services",
+        path: "/sms-services",
+        permissions: ["sms-service.index"],
+      },
     ],
   },
   {
     title: "Access Control",
     icon: FiShield,
     type: "group",
-    open_when: ["/users", "/teams", "/roles", "/permissions"],
+    open_when: ["/users", "/teams", "/roles", "/permissions", "/IP"],
     items: [
       { title: "Users", path: "/users", permissions: ["user.index"] },
       { title: "Teams", path: "/teams", permissions: ["team.index"] },
@@ -171,6 +271,7 @@ const companyMenuItems = [
         path: "/permissions",
         permissions: ["permission.index"],
       },
+      { title: "IP Management", path: "/IP", permissions: ["ip.index"] },
     ],
   },
   {
