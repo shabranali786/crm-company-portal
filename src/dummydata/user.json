@@ -1,23 +1,45 @@
 {
   "users": [
     {
-      "name": "CRM Platform Owner 3",
+      "id": 1,
       "email": "owner@crmplatform.com",
-      "role": "superadmin",
+      "password": "owner123",
+      "name": "CRM Platform Owner",
+      "role": "crm_owner",
+      "roles": [
+        {
+          "id": 1,
+          "name": "CRM Owner"
+        }
+      ],
+      "companyId": null,
+      "avatar": null,
+      "teams": [],
+      "permissions": [
+        "manage_all_companies",
+        "manage_platform_settings",
+        "view_platform_analytics",
+        "manage_platform_billing",
+        "manage_subscriptions"
+      ],
       "status": "active",
-      "id": "1"
+      "created_at": "2024-01-15T08:00:00Z",
+      "updated_at": "2024-01-15T08:00:00Z"
     },
     {
-      "id": "2",
-      "name": "Ahmed Ali",
+      "id": 2,
       "email": "admin@techcorp.com",
-      "status": "active",
+      "password": "admin123",
+      "name": "Ahmed Ali",
+      "role": "company_owner",
       "roles": [
         {
           "id": 2,
           "name": "SuperAdmin"
         }
       ],
+      "companyId": 1,
+      "avatar": null,
       "teams": [
         {
           "id": 1,
@@ -26,20 +48,25 @@
         }
       ],
       "permissions": [],
+      "status": "active",
       "created_at": "2024-01-15T09:00:00Z",
       "updated_at": "2024-01-15T09:00:00Z"
     },
     {
-      "id": "3",
-      "name": "Sara Khan",
+      "id": 3,
       "email": "sales@techcorp.com",
-      "status": "active",
+      "password": "sales123",
+      "name": "Sara Khan",
+      "role": "company_user",
       "roles": [
         {
           "id": 3,
           "name": "Sales Manager"
         }
       ],
+      "companyId": 1,
+      "department": "Sales",
+      "avatar": null,
       "teams": [
         {
           "id": 2,
@@ -62,20 +89,24 @@
         "customer.index",
         "invoice.index"
       ],
+      "status": "active",
       "created_at": "2024-01-16T10:00:00Z",
       "updated_at": "2024-01-16T10:00:00Z"
     },
     {
-      "id": "4",
-      "name": "Usman Shah",
+      "id": 4,
       "email": "admin@digitalagency.com",
-      "status": "active",
+      "password": "digital123",
+      "name": "Usman Shah",
+      "role": "company_owner",
       "roles": [
         {
           "id": 2,
           "name": "SuperAdmin"
         }
       ],
+      "companyId": 2,
+      "avatar": null,
       "teams": [
         {
           "id": 4,
@@ -84,20 +115,25 @@
         }
       ],
       "permissions": [],
+      "status": "active",
       "created_at": "2024-01-17T11:00:00Z",
       "updated_at": "2024-01-17T11:00:00Z"
     },
     {
-      "id": "5",
-      "name": "Fatima Ahmed",
+      "id": 5,
       "email": "marketing@digitalagency.com",
-      "status": "active",
+      "password": "marketing123",
+      "name": "Fatima Ahmed",
+      "role": "company_user",
       "roles": [
         {
           "id": 4,
           "name": "Marketing Specialist"
         }
       ],
+      "companyId": 2,
+      "department": "Marketing",
+      "avatar": null,
       "teams": [
         {
           "id": 5,
@@ -114,20 +150,25 @@
         "campaign.index",
         "contact-list.index"
       ],
+      "status": "active",
       "created_at": "2024-01-18T12:00:00Z",
       "updated_at": "2024-01-18T12:00:00Z"
     },
     {
-      "id": "6",
-      "name": "John Smith",
+      "id": 6,
       "email": "john@techcorp.com",
-      "status": "active",
+      "password": "john123",
+      "name": "John Smith",
+      "role": "company_user",
       "roles": [
         {
           "id": 5,
           "name": "Developer"
         }
       ],
+      "companyId": 1,
+      "department": "Development",
+      "avatar": null,
       "teams": [
         {
           "id": 6,
@@ -139,20 +180,25 @@
         "dashboard.index",
         "user.index"
       ],
+      "status": "active",
       "created_at": "2024-01-19T13:00:00Z",
       "updated_at": "2024-01-19T13:00:00Z"
     },
     {
-      "id": "7",
-      "name": "Jane Doe",
+      "id": 7,
       "email": "jane@techcorp.com",
-      "status": "active",
+      "password": "jane123",
+      "name": "Jane Doe",
+      "role": "company_user",
       "roles": [
         {
           "id": 6,
           "name": "Support Agent"
         }
       ],
+      "companyId": 1,
+      "department": "Customer Support",
+      "avatar": null,
       "teams": [
         {
           "id": 7,
@@ -166,20 +212,25 @@
         "user.show",
         "customer.index"
       ],
+      "status": "active",
       "created_at": "2024-01-20T14:00:00Z",
       "updated_at": "2024-01-20T14:00:00Z"
     },
     {
-      "id": "8",
-      "name": "Mike Wilson",
+      "id": 8,
       "email": "mike@digitalagency.com",
-      "status": "inactive",
+      "password": "mike123",
+      "name": "Mike Wilson",
+      "role": "company_user",
       "roles": [
         {
           "id": 7,
           "name": "Content Manager"
         }
       ],
+      "companyId": 2,
+      "department": "Content",
+      "avatar": null,
       "teams": [
         {
           "id": 8,
@@ -191,20 +242,25 @@
         "dashboard.index",
         "user.index"
       ],
+      "status": "inactive",
       "created_at": "2024-01-21T15:00:00Z",
       "updated_at": "2024-01-21T15:00:00Z"
     },
     {
-      "id": "9",
-      "name": "Alex Johnson",
+      "id": 9,
       "email": "alex@techcorp.com",
-      "status": "active",
+      "password": "alex123",
+      "name": "Alex Johnson",
+      "role": "company_user",
       "roles": [
         {
           "id": 8,
           "name": "Project Manager"
         }
       ],
+      "companyId": 1,
+      "department": "Project Management",
+      "avatar": null,
       "teams": [
         {
           "id": 9,
@@ -219,20 +275,25 @@
         "user.create",
         "team.index"
       ],
+      "status": "active",
       "created_at": "2024-01-22T15:00:00Z",
       "updated_at": "2024-01-22T15:00:00Z"
     },
     {
-      "id": "10",
-      "name": "Lisa Anderson",
+      "id": 10,
       "email": "lisa@digitalagency.com",
-      "status": "active",
+      "password": "lisa123",
+      "name": "Lisa Anderson",
+      "role": "company_user",
       "roles": [
         {
           "id": 9,
           "name": "HR Manager"
         }
       ],
+      "companyId": 2,
+      "department": "Human Resources",
+      "avatar": null,
       "teams": [
         {
           "id": 10,
@@ -249,6 +310,7 @@
         "team.index",
         "role.index"
       ],
+      "status": "active",
       "created_at": "2024-01-23T16:00:00Z",
       "updated_at": "2024-01-23T16:00:00Z"
     }
